@@ -1,6 +1,7 @@
 const path = require('path');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-
+const { ProgressPlugin } = require('webpack');
 
 module.exports = {
   entry: {
@@ -11,7 +12,7 @@ module.exports = {
     path: path.join(__dirname, 'dist'),
   },
   devServer: {
-    contentBase: './dist'
+    contentBase: './dist',
   },
   module: {
     rules: [
@@ -22,7 +23,5 @@ module.exports = {
       },
     ],
   },
-  plugins: [
-    new HtmlWebpackPlugin()
-  ]
+  plugins: [new ProgressPlugin(), new CleanWebpackPlugin(), new HtmlWebpackPlugin()],
 };
