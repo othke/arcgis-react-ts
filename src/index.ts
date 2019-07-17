@@ -4,7 +4,7 @@ type info = {
 };
 
 function sayHello(params: info) {
-  console.log(`Hello ${params.name} ${params.surname}`);
+  console.log(`Hello dear ${params.name} ${params.surname}`);
 }
 
 sayHello({ name: 'Olivier', surname: 'Thomas' });
