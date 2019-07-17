@@ -2,6 +2,7 @@ const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ArcGISWebpackPlugin = require('@arcgis/webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { ProgressPlugin } = require('webpack');
 
 module.exports = {
@@ -30,8 +31,16 @@ module.exports = {
   plugins: [
     new ProgressPlugin(),
     new CleanWebpackPlugin(),
-    new ArcGISWebpackPlugin(),
-    new HtmlWebpackPlugin({ template: path.join(__dirname, 'src/index.html'), chunksSortMode: 'none' }),
+    new CopyWebpackPlugin([{ from: 'surge' }]),
+    new ArcGISWebpackPlugin({
+      features: {
+        '3d': false,
+      },
+    }),
+    new HtmlWebpackPlugin({
+      template: path.join(__dirname, 'src/index.html'),
+      chunksSortMode: 'none',
+    }),
   ],
   node: {
     process: false,
