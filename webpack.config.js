@@ -5,7 +5,7 @@ const { ProgressPlugin } = require('webpack');
 
 module.exports = {
   entry: {
-    main: './src/index.ts',
+    main: './src/index.tsx',
   },
   output: {
     filename: 'main.js',
@@ -13,6 +13,9 @@ module.exports = {
   },
   devServer: {
     contentBase: './dist',
+  },
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.json'],
   },
   module: {
     rules: [
@@ -23,5 +26,9 @@ module.exports = {
       },
     ],
   },
-  plugins: [new ProgressPlugin(), new CleanWebpackPlugin(), new HtmlWebpackPlugin()],
+  plugins: [
+    new ProgressPlugin(),
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({ template: path.join(__dirname, 'src/index.html') }),
+  ],
 };
